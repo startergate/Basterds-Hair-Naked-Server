@@ -11,3 +11,10 @@ def index(request):
 def get_profile(request):
     return JsonResponse({})
 
+
+def get_match(request):
+    return JsonResponse({})
+
+
+def get_match_specific(request):
+    return JsonResponse({})
