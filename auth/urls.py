@@ -3,5 +3,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('api/', include('auth.urls')),
+    path('', views.index, name="auth_index"),
 ]
