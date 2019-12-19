@@ -8,9 +8,9 @@ def index(request):
     return HttpResponse("Hello World!")
 
 
-def get_profile(request):
+def get_profile(request, pid):
     return JsonResponse({
-        "pid": "1234567890123456",
+        "pid": pid,
         "total": {
             "score": 10000000,
             "playtime": 42342423,
@@ -62,9 +62,9 @@ def get_profile(request):
     })
 
 
-def get_match(request):
+def get_match(request, match_id):
     return JsonResponse({})
 
 
-def get_match_specific(request):
+def get_match_specific(request, match_id, pid):
     return JsonResponse({})
