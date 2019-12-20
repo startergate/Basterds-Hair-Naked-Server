@@ -31,6 +31,7 @@ def session(request):
         "isPermanent": True,
     }).json()
     if res["type"] == "error":
+        print("Create Session Error - Type 1")
         return HttpResponse(status=500)
     fakepost = {
         'id': body['id'],
@@ -46,4 +47,5 @@ def session(request):
             "nickname": res["response_data"][2]
         })
     else:
+        print("Create Session Error - Type 2")
         return HttpResponse(status=500)
