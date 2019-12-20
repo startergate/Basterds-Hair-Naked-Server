@@ -35,7 +35,7 @@ def session(request):
         return HttpResponse(status=500)
     fakepost = {
         'id': body['id'],
-        'pid': res["response_data"][0]
+        'pid': res["response_data"][1]
     }
     user = User(id=body["id"], pid=res["response_data"][1])
     form = UserForm(fakepost, instance=user)
@@ -47,5 +47,10 @@ def session(request):
             "nickname": res["response_data"][2]
         })
     else:
-        print("Create Session Error - Type 2")
+        if "already exists" in str(form.errors):
+            return JsonResponse({
+                "sessid": res["response_data"][0],
+                "pid": res["response_data"][1],
+                "nickname": res["response_data"][2]
+            })
         return HttpResponse(status=500)
