@@ -14,6 +14,7 @@ def get_profile(request, pid):
         "total": {
             "score": 10000000,
             "playtime": 42342423,
+            "most_played": "meisterboi",
             "turn_count": 8000,
             "match_count": 1000,
             "win_count": 500,
@@ -23,7 +24,7 @@ def get_profile(request, pid):
             "damage": 3000000,
             "heal": 250000
         },
-        "1": {
+        "insomnia": {
             "score": 10000000,
             "playtime": 42342423,
             "turn_count": 8000,
@@ -35,7 +36,7 @@ def get_profile(request, pid):
             "damage": 3000000,
             "heal": 250000
         },
-        "2": {
+        "orangefamily": {
             "score": 10000000,
             "playtime": 42342423,
             "turn_count": 8000,
@@ -47,9 +48,21 @@ def get_profile(request, pid):
             "damage": 3000000,
             "heal": 250000
         },
-        "3": {
+        "overhit": {
             "score": 10000000,
             "playtime": 42342423,
+            "turn_count": 8000,
+            "match_count": 1000,
+            "win_count": 500,
+            "spawned_alias": 10000,
+            "killed_alias": 12000,
+            "killed_hostiles": 10000,
+            "damage": 3000000,
+            "heal": 250000
+        },
+        "meisterboi": {
+            "score": 10000000,
+            "playtime": 42342424,
             "turn_count": 8000,
             "match_count": 1000,
             "win_count": 500,
