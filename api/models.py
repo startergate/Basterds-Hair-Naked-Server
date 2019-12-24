@@ -16,7 +16,7 @@ class Match(models.Model):
         return str(self.matchid)
 
     matchid = models.BigAutoField(primary_key=True)
-    pid = models.ForeignKey(User, help_text="유저 테이블 외래키", on_delete=models.CASCADE)
+    pid = models.ForeignKey(User, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
     status = models.CharField(max_length=7, choices=Status.choices, default=Status.PENDING)
     score = models.BigIntegerField()
     playtime = models.DateTimeField()
