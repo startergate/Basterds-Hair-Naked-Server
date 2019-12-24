@@ -24,6 +24,7 @@ class Match(models.Model):
 
     matchid = models.BigAutoField(primary_key=True)
     pid = models.ForeignKey(User, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
+    played_as = models.CharField(max_length=12, choices=Faction.choices, default=Faction.INSOMNIA)
     status = models.CharField(max_length=7, choices=Status.choices, default=Status.PENDING)
     score = models.BigIntegerField()
     playtime = models.DateTimeField()
