@@ -54,3 +54,27 @@ class Object(models.Model):
     status = models.CharField(max_length=6, choices=Status.choices, default=Status.UNBORN)
     job = models.CharField(max_length=8, choices=Job.choices, default=Job.LEADER)
 
+
+class Action(models.Model):
+    class ActionType(models.TextChoices):
+        START = "start"
+        SPAWN = "spawn"
+        MOVE = "move"
+        ATTACK = "attack"
+        MOVEATTACK = "moveattack"
+        DIE = "die"
+        END = "end"
+
+    def __str__(self):
+        return "some string"
+
+    actionid = models.BigAutoField(primary_key=True)
+    pid = models.ForeignKey(Match, to_field=User.pid, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
+    matchid = models.ForeignKey(Match, db_column="matchid", help_text="매치 테이블 외래키", on_delete=models.CASCADE)
+    type = models.CharField(max_length=10, choices=ActionType.choices, default=ActionType.START)
+    origin = models.ForeignKey(Object, on_delete=models.CASCADE)
+    to = models.ForeignKey(Object, on_delete=models.CASCADE, null=True)
+    destination_x = models.IntegerField(null=True)
+    destination_y = models.IntegerField(null=True)
+    amount = models.IntegerField(null=True)
+
