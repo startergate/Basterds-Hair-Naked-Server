@@ -17,3 +17,9 @@ class ObjectForm(forms.ModelForm):
         fields = ('objectid', 'matchid', 'belong_to', 'status', 'job', 'hp', 'damage')
         app_label = 'api'
 
+
+class ActionForm(forms.ModelForm):
+    class Meta:
+        model = Action
+        fields = ('actionid', 'pid', 'matchid', 'type', 'origin', 'to', 'destination_x', 'destination_y', 'amount')
+        app_label = 'api'
