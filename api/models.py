@@ -13,7 +13,6 @@ class Faction(models.TextChoices):
 
 
 class Match(models.Model):
-
     class Status(models.TextChoices):
         PENDING = "pending"
         WIN = "win"
@@ -34,4 +33,24 @@ class Match(models.Model):
     killed_hostiles = models.IntegerField()
     damage = models.IntegerField()
     heal = models.IntegerField()
+
+
+class Object(models.Model):
+    class Status(models.TextChoices):
+        UNBORN = "unborn"
+        ALIVE = "alive"
+        STUN = "stun"
+        DEAD = "dead"
+
+    class Job(models.TextChoices):
+        LEADER = "leader"
+        BASIC = "basic"
+        ADVANCED = "advanced"
+        EXPERT = "expert"
+
+    objectid = models.BigAutoField(primary_key=True)
+    matchid = models.ForeignKey(Match, db_column="matchid", help_text="매치 테이블 외래키", on_delete=models.CASCADE)
+    belong_to = models.ForeignKey(Match, to_field=User.pid, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
+    status = models.CharField(max_length=6, choices=Status.choices, default=Status.UNBORN)
+    job = models.CharField(max_length=8, choices=Job.choices, default=Job.LEADER)
 
