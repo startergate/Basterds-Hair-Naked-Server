@@ -1,6 +1,6 @@
 from django import forms
 
-from api.models import Match
+from api.models import Match, Object, Action
 
 
 class MatchForm(forms.ModelForm):
@@ -9,3 +9,11 @@ class MatchForm(forms.ModelForm):
         fields = ('matchid', 'pid', 'status', 'played_as', 'score', 'playtime', 'turn_count',
                   'spawned_alias', 'killed_alias', 'killed_hostiles', 'damage', 'heal')
         app_label = 'api'
+
+
+class ObjectForm(forms.ModelForm):
+    class Meta:
+        model = Object
+        fields = ('objectid', 'matchid', 'belong_to', 'status', 'job', 'hp', 'damage')
+        app_label = 'api'
+
