@@ -5,6 +5,13 @@ from auth_sid.models import User
 # Create your models here.
 
 
+class Faction(models.TextChoices):
+    INSOMNIA = "insomnia"
+    ORANGEFAMILY = "orangefamily"
+    OVERHIT = "overhit"
+    MEISTERBOI = "meisterboi"
+
+
 class Match(models.Model):
 
     class Status(models.TextChoices):
