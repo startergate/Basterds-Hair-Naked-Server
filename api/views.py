@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello World!")
+    return HttpResponse("Hello World! Api updated at 2019-12-24 11:47")
