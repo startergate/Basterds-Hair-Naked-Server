@@ -76,7 +76,7 @@ def get_profile(request, pid):
     })
 
 
-def get_match(request, match_id):
+def get_matches(request, match_id):
     return JsonResponse({})
 
 
