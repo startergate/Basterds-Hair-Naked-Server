@@ -31,8 +31,8 @@ class Match(models.Model):
     spawned_alias = models.IntegerField()
     killed_alias = models.IntegerField()
     killed_hostiles = models.IntegerField()
-    damage = models.IntegerField()
-    heal = models.IntegerField()
+    damage = models.BigIntegerField()
+    heal = models.BigIntegerField()
 
 
 class Object(models.Model):
