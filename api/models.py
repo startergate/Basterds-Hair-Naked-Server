@@ -41,6 +41,7 @@ class Object(models.Model):
         ALIVE = "alive"
         STUN = "stun"
         DEAD = "dead"
+        DONE = "done"
 
     class Job(models.TextChoices):
         LEADER = "leader"
