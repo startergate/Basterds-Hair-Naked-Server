@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 from auth_sid.models import User
@@ -33,6 +35,8 @@ class Match(models.Model):
     killed_hostiles = models.IntegerField()
     damage = models.BigIntegerField()
     heal = models.BigIntegerField()
+    created_at = models.DateTimeField(default=datetime.now)
+    terminated_at = models.DateTimeField(null=True)
 
 
 class Object(models.Model):
