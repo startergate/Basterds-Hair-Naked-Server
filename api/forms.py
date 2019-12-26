@@ -6,15 +6,15 @@ from api.models import Match, Object, Action
 class MatchForm(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ('matchid', 'pid', 'status', 'played_as', 'score', 'playtime', 'turn_count',
-                  'spawned_alias', 'killed_alias', 'killed_hostiles', 'damage', 'heal')
+        fields = ('matchid', 'pid1', 'pid2', 'status', 'played_as', 'score', 'playtime', 'turn_count',
+                  'spawned_alias', 'killed_alias', 'killed_hostiles', 'damage', 'heal', 'created_at', 'terminated_at')
         app_label = 'api'
 
 
 class ObjectForm(forms.ModelForm):
     class Meta:
         model = Object
-        fields = ('objectid', 'matchid', 'belong_to', 'status', 'job', 'hp', 'damage')
+        fields = ('objectid', 'matchid', 'belong_to', 'status', 'faction', 'job', 'hp', 'damage')
         app_label = 'api'
 
 
