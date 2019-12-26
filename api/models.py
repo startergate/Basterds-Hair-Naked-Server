@@ -65,13 +65,11 @@ class Object(models.Model):
 
 class Action(models.Model):
     class ActionType(models.TextChoices):
-        START = "start"
         SPAWN = "spawn"
         MOVE = "move"
         ATTACK = "attack"
         MOVEATTACK = "moveattack"
         DIE = "die"
-        END = "end"
 
     def __str__(self):
         return "some string"
@@ -79,7 +77,7 @@ class Action(models.Model):
     actionid = models.BigAutoField(primary_key=True)
     pid = models.ForeignKey(User, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
     matchid = models.ForeignKey(Match, db_column="matchid", help_text="매치 테이블 외래키", on_delete=models.CASCADE)
-    type = models.CharField(max_length=10, choices=ActionType.choices, default=ActionType.START)
+    type = models.CharField(max_length=10, choices=ActionType.choices, default=ActionType.MOVE)
     origin = models.ForeignKey(Object, on_delete=models.CASCADE, related_name='action_origin')
     to = models.ForeignKey(Object, on_delete=models.CASCADE, null=True, related_name='action_to')
     destination_x = models.IntegerField(null=True)
