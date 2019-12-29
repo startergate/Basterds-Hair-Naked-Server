@@ -257,3 +257,5 @@ modules.xml
 venv/
 
 db.cnf
+
+**/migrations/

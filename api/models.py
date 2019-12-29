@@ -19,6 +19,7 @@ class Match(models.Model):
         PENDING = "pending"
         WIN = "win"
         LOSE = "lose"
+        DRAW = "draw"
 
     def __str__(self):
         return str(self.matchid)
@@ -29,18 +30,18 @@ class Match(models.Model):
     played_as1 = models.CharField(max_length=12, choices=Faction.choices, default=Faction.INSOMNIA)
     played_as2 = models.CharField(max_length=12, choices=Faction.choices, default=Faction.INSOMNIA)
     status = models.CharField(max_length=7, choices=Status.choices, default=Status.PENDING)
-    score1 = models.BigIntegerField()
-    score2 = models.BigIntegerField()
-    playtime = models.DateTimeField()
-    turn_count = models.IntegerField()
-    spawned1 = models.IntegerField()
-    killed1 = models.IntegerField()
-    spawned2 = models.IntegerField()
-    killed2 = models.IntegerField()
-    damage1 = models.BigIntegerField()
-    heal1 = models.BigIntegerField()
-    damage2 = models.BigIntegerField()
-    heal2 = models.BigIntegerField()
+    score1 = models.BigIntegerField(default=0)
+    score2 = models.BigIntegerField(default=0)
+    playtime = models.DateTimeField(default=0)
+    turn_count = models.IntegerField(default=0)
+    spawned1 = models.IntegerField(default=0)
+    killed1 = models.IntegerField(default=0)
+    spawned2 = models.IntegerField(default=0)
+    killed2 = models.IntegerField(default=0)
+    damage1 = models.BigIntegerField(default=0)
+    heal1 = models.BigIntegerField(default=0)
+    damage2 = models.BigIntegerField(default=0)
+    heal2 = models.BigIntegerField(default=0)
     created_at = models.DateTimeField(default=datetime.now)
     terminated_at = models.DateTimeField(null=True)
 
