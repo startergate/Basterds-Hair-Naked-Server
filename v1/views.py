@@ -92,7 +92,7 @@ def get_profile(request, pid):
 
         base["total"]["score"] += d.score
         base["total"]["playtime"] += timedelta(hours=d.playtime.hour, minutes=d.playtime.minute,
-                                                   seconds=d.playtime.second, microseconds=d.playtime.microsecond)
+                                               seconds=d.playtime.second, microseconds=d.playtime.microsecond)
         base["total"]["turn_count"] += d.score
         base["total"]["match_count"] += 1
         base["total"]["win_count"] += 1 if d.status == d.Status.WIN else 0
@@ -100,6 +100,20 @@ def get_profile(request, pid):
         base["total"]["spawned"] += d.spawned
         base["total"]["killed"] += d.killed
         base["total"]["damage"] += d.score
+
+    playtime_top = datetime.min
+    count_per_match_top = 0
+    for key, value in base.items():
+        if key not in ["insomnia", "orangefamily", "overhit", "meisterboi"]:
+            continue
+        if playtime_top < value["playtime"]:
+            base["total"]["most_played"] = key
+        try:
+            if count_per_match_top < value["score"] / value["match_count"]:
+                base["total"]["best_played"] = key
+        except ZeroDivisionError:
+            pass
+
     return JsonResponse(base)
 
 
