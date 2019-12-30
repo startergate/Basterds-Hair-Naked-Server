@@ -90,4 +90,7 @@ def get_matches(request, pid):
 
 
 def get_match_specific(request, match_id):
-    return JsonResponse({})
+    return JsonResponse({
+        "is_succeed": True,
+        "data": json.loads(serializers.serialize('json', Match.objects.filter(matchid=match_id)))[0]["fields"]
+    })
