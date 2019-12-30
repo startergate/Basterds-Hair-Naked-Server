@@ -16,7 +16,6 @@ def index(request):
 
 def get_profile(request, pid):
     default_time = datetime.min
-    print(default_time)
     base = {
         "pid": pid,
         "total": {
