@@ -20,6 +20,7 @@ def get_profile(request, pid):
     base = {
         "pid": pid,
         "total": {
+            "avg_score": 0,
             "score": 0,
             "playtime": default_time,
             "most_played": "insomnia",
@@ -100,6 +101,11 @@ def get_profile(request, pid):
         base["total"]["spawned"] += d.spawned
         base["total"]["killed"] += d.killed
         base["total"]["damage"] += d.score
+
+    try:
+        base["total"]["avg_score"] = base["total"]["score"] / base["total"]["match_count"]
+    except ZeroDivisionError:
+        pass
 
     playtime_top = datetime.min
     count_per_match_top = 0
