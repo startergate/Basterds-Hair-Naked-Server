@@ -54,7 +54,7 @@ class Object(models.Model):
 
     objectid = models.BigAutoField(primary_key=True)
     matchid = models.ForeignKey(Match, db_column="matchid", help_text="매치 테이블 외래키", on_delete=models.CASCADE)
-    belong_to = models.ForeignKey(User, db_column="pid", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
+    belong_to = models.ForeignKey(User, db_column="belong_to", help_text="유저 테이블 외래키", on_delete=models.CASCADE)
     status = models.CharField(max_length=6, choices=Status.choices, default=Status.UNBORN)
     faction = models.CharField(max_length=12, choices=Faction.choices, default=Faction.INSOMNIA)
     job = models.CharField(max_length=8, choices=Job.choices, default=Job.LEADER)
