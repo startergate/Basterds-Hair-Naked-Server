@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.core import serializers
 from django.http import HttpResponse, JsonResponse
+
+import json
+
+from api.models import Match
 
 # Create your views here.
 
@@ -76,9 +80,14 @@ def get_profile(request, pid):
     })
 
 
-def get_matches(request, match_id):
-    return JsonResponse({})
+def get_matches(request, pid):
+    match_list = json.loads(serializers.serialize('json', Match.objects.filter(player=pid)))
+    match_list = [x["fields"] for x in match_list]
+    return JsonResponse({
+        "is_succeed": True,
+        "data": match_list
+    })
 
 
-def get_match_specific(request, match_id, pid):
+def get_match_specific(request, match_id):
     return JsonResponse({})
