@@ -128,6 +128,10 @@ def get_profile(request, pid):
 
 
 def get_matches(request, pid):
+    res = requests.get('http://sid.donote.co:3000/api/v1/convert/id/' + pid).json()
+    if not res["is_succeed"]:
+        return HttpResponse(status=404)
+    pid = res["response_data"]
     match_list = json.loads(serializers.serialize('json', Match.objects.filter(player=pid)))
     match_list = [x["fields"] for x in match_list]
     return JsonResponse({
