@@ -4,6 +4,7 @@ from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 
 import json
+import requests
 
 from api.models import Match
 
@@ -15,6 +16,10 @@ def index(request):
 
 
 def get_profile(request, pid):
+    res = requests.get('http://donote.co:3000/api/v1/convert/id/' + pid).json()
+    if not res["is_succeed"]:
+        return HttpResponse(status=404)
+    pid = res["pid"]
     default_time = datetime.min
     base = {
         "pid": pid,
