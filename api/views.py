@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello World! BUILD 0107-0925")
+    return HttpResponse("Hello World! BUILD 0107-1025")

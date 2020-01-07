@@ -16,10 +16,10 @@ def index(request):
 
 
 def get_profile(request, pid):
-    res = requests.get('http://donote.co:3000/api/v1/convert/id/' + pid).json()
+    res = requests.get('http://sid.donote.co:3000/api/v1/convert/id/' + pid).json()
     if not res["is_succeed"]:
         return HttpResponse(status=404)
-    pid = res["pid"]
+    pid = res["response_data"]
     default_time = datetime.min
     base = {
         "pid": pid,
