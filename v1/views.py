@@ -89,8 +89,20 @@ def get_profile(request, pid):
                                                    seconds=d.playtime.second, microseconds=d.playtime.microsecond)
         base[d.played_as]["turn_count"] += d.score
         base[d.played_as]["match_count"] += 1
-        base[d.played_as]["win_count"] += 1 if d.status == d.Status.WIN else 0
-        base[d.played_as]["pending_count"] += 1 if d.status == d.Status.PENDING else 0
+        if d.status == "won":
+            base[d.played_as]["win_count"] += 1
+            base["total"]["win_count"] += 1
+        else:
+            base[d.played_as]["win_count"] += 0
+            base["total"]["win_count"] += 0
+
+        if d.status == "pending":
+            base[d.played_as]["pending_count"] += 1
+            base["total"]["pending_count"] += 1
+        else:
+            base[d.played_as]["pending_count"] += 0
+            base["total"]["pending_count"] += 0
+
         base[d.played_as]["spawned"] += d.spawned
         base[d.played_as]["killed"] += d.killed
         base[d.played_as]["damage"] += d.score
@@ -100,8 +112,6 @@ def get_profile(request, pid):
                                                seconds=d.playtime.second, microseconds=d.playtime.microsecond)
         base["total"]["turn_count"] += d.score
         base["total"]["match_count"] += 1
-        base["total"]["win_count"] += 1 if d.status == d.Status.WIN else 0
-        base["total"]["pending_count"] += 1 if d.status == d.Status.PENDING else 0
         base["total"]["spawned"] += d.spawned
         base["total"]["killed"] += d.killed
         base["total"]["damage"] += d.score
