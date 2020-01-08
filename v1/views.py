@@ -136,7 +136,7 @@ def get_matches(request, pid):
     match_list = [x["fields"] for x in match_list]
     return JsonResponse({
         "is_succeed": True,
-        "data": match_list
+        "data": list(reversed(match_list))
     })
 
 
